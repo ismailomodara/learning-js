@@ -1,20 +1,15 @@
 const numberOfCarryOperations = (first, second) => {
 
-    let firstNum = first.toString().split('');
-    let secondNum = second.toString().split('');
+    let firstString = first.toString();
+    let secondString = second.toString();
 
-    const diff = firstNum.length - secondNum.length;
-    const absDiff = Math.abs(diff);
+    const length = Math.max(firstString.length, secondString.length)
 
-    if(diff < 0) {
-        firstNum = Array(absDiff).fill('0').concat(...firstNum)
-    } else {
-        secondNum = Array(absDiff).fill('0').concat(...secondNum)
-    }
+    firstString = firstString.padStart(length, '0')
+    secondString = secondString.padStart(length, '0')
 
-    const numerator = firstNum.map(i => Number(i))
-    const denominator = secondNum.map(i => Number(i))
-
+    const numerator = firstString.split('').map(i => Number(i))
+    const denominator = secondString.split('').map(i => Number(i))
 
     let total_carry = 0;
     let temp_carry = 0;
